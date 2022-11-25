@@ -1,18 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import Sidebar from "../components/Sidebar";
+import styled from "styled-components/macro";
+import PageTemplate from "../components/PageTemplate";
 import Title from "../components/Title";
-
-const MainWrapper = styled.section`
-  display: flex;
-`;
-
-const ContentWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid red;
-  width: 100%;
-`;
 
 const Content = styled.div`
   display: flex;
@@ -20,21 +9,12 @@ const Content = styled.div`
   border: 1px solid orange;
 `;
 
-
 function CurrentEmployees() {
   return (
-    <MainWrapper>
-      <Sidebar />
-
-      <ContentWrapper>
-        <Title />
-
-        <Content>
-
-
-        </Content>
-      </ContentWrapper>
-    </MainWrapper>
+    <PageTemplate>
+      <Title title="Current Employees" />
+      <Content></Content>
+    </PageTemplate>
   );
 }
 
