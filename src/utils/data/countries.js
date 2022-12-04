@@ -34,7 +34,6 @@ export const countries = [
   { value: "NH", label: "New Hampshire" },
   { value: "NJ", label: "New Jersey" },
   { value: "NM", label: "New Mexico" },
-  { value: "XXNM", label: "xxxxxxx" },
 ];
 
 

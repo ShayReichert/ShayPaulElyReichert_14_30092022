@@ -60,12 +60,12 @@ function Sidebar() {
       </LogoLink>
 
       <MenuWrapper>
-        <ItemLink to="/" activeClassName="active">
+        <ItemLink to="/" activeclassname="active">
           <FontAwesomeIcon icon={faPlus} />
           <MenuText>Create employee</MenuText>
         </ItemLink>
 
-        <ItemLink to="/current-employees" activeClassName="active">
+        <ItemLink to="/current-employees" activeclassname="active">
           <FontAwesomeIcon icon={faUserCircle} />
           <MenuText>View Current Employees</MenuText>
         </ItemLink>
