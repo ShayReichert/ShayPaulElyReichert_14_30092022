@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useSort from "../functions/useSort";
 import styled from "styled-components/macro";
 import PageTemplate from "../components/PageTemplate";
 import Title from "../components/Title";
@@ -31,11 +32,14 @@ const Table = styled.table`
 `;
 
 const TheadButton = styled.button`
+  display: flex;
+  align-items: center;
   border: 0;
   font-weight: 700;
   font-size: 16px;
   padding: 2rem 1rem;
   background-color: ${colors.lightgrey};
+  cursor: pointer;
 
   &.ascending::after {
     content: "▼";
@@ -68,10 +72,26 @@ const TbodyTd = styled.td`
 `;
 
 function CurrentEmployees() {
+  const { sortKey, headers, handleSort } = useSort();
   const [query, setQuery] = useState("");
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
+
+  // Sort the employees array based on the sort class and the sort key
+  let sortedEmployees = [...employees];
+  const sortHeader = headers.find((header) => header.value === sortKey);
+  if (sortHeader && sortHeader.sortClass !== "none") {
+    sortedEmployees.sort((a, b) => {
+      if (a[sortKey] < b[sortKey]) {
+        return sortHeader.sortClass === "ascending" ? -1 : 1;
+      }
+      if (a[sortKey] > b[sortKey]) {
+        return sortHeader.sortClass === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+  }
 
   return (
     <PageTemplate>
@@ -87,37 +107,17 @@ function CurrentEmployees() {
           <Table>
             <thead>
               <TheadTr>
-                <TheadTh>
-                  <TheadButton type="button">First Name</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">Last Name</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">Start Day</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">Department</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">Date of Birth</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">Street</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">City</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">State</TheadButton>
-                </TheadTh>
-                <TheadTh>
-                  <TheadButton type="button">Zip Code</TheadButton>
-                </TheadTh>
+                {headers.map((header) => (
+                  <TheadTh key={header.value}>
+                    <TheadButton className={header.sortClass} type="button" onClick={() => handleSort(header.value)}>
+                      {header.name}
+                    </TheadButton>
+                  </TheadTh>
+                ))}
               </TheadTr>
             </thead>
             <tbody>
-              {employees.map((employee) => (
+              {sortedEmployees.map((employee) => (
                 <TbodyTr key={employee.id}>
                   <TbodyTd>{employee.firstName}</TbodyTd>
                   <TbodyTd>{employee.lastName}</TbodyTd>
