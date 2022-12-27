@@ -1,5 +1,5 @@
 // Typer les props avec proptypes
-export const employees = [
+export const mockEmployees = [
   {
     id: 1,
     firstName: "Robert",

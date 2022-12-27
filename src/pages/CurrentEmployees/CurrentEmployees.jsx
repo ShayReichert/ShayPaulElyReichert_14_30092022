@@ -1,85 +1,25 @@
-import React, { useState } from "react";
-import useSort from "../functions/useSort";
-import styled from "styled-components/macro";
-import PageTemplate from "../components/PageTemplate";
-import Title from "../components/Title";
-import colors from "../utils/style/colors";
-import { employees } from "../utils/data/mockEmployees";
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid ${colors.grey};
-  border-radius: 7px;
-  padding: 3rem 4rem;
-  min-height: 50vh;
-`;
-
-const SearchWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 3rem;
-
-  form {
-    width: fit-content;
-    color: ${colors.grey};
-  }
-`;
-
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-`;
-
-const TheadButton = styled.button`
-  display: flex;
-  align-items: center;
-  border: 0;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 2rem 1rem;
-  background-color: ${colors.lightgrey};
-  cursor: pointer;
-
-  &.ascending::after {
-    content: "▼";
-    display: inline-block;
-  }
-
-  &.descending::after {
-    content: "▲";
-    display: inline-block;
-  }
-`;
-
-const TheadTr = styled.tr`
-  background-color: ${colors.lightgrey};
-`;
-
-const TheadTh = styled.th`
-  background-color: ${colors.lightgrey};
-`;
-
-const TbodyTr = styled.tr`
-  &:hover {
-    background-color: ${colors.lightgrey};
-  }
-`;
-
-const TbodyTd = styled.td`
-  padding: 2rem 1rem;
-  border-bottom: 1px solid ${colors.grey};
-`;
+import React, { useState, useEffect, useContext } from "react";
+import { Content, SearchWrapper, Table, TheadButton, TheadTr, TheadTh, TbodyTr, TbodyTd } from "./Style";
+import EmployeeContext from "../../utils/context/EmployeeContext";
+import useSort from "../../hooks/useSort";
+import PageTemplate from "../../components/PageTemplate";
+import Title from "../../components/Title";
 
 function CurrentEmployees() {
+  const { employees } = useContext(EmployeeContext);
+  const [currentEmployees, setCurrentEmployees] = useState(employees);
   const { sortKey, headers, handleSort } = useSort();
   const [query, setQuery] = useState("");
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
+  useEffect(() => {
+    setCurrentEmployees(employees);
+  }, [employees]);
+
   // Sort the employees array based on the sort class and the sort key
-  let sortedEmployees = [...employees];
+  let sortedEmployees = [...currentEmployees];
   const sortHeader = headers.find((header) => header.value === sortKey);
   if (sortHeader && sortHeader.sortClass !== "none") {
     sortedEmployees.sort((a, b) => {
