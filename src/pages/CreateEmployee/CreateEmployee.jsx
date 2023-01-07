@@ -22,6 +22,11 @@ function CreateEmployee() {
   const [selectState, setSelectState] = useState("");
   const [zipcode, setUserZipcode] = useState("");
 
+  const formatDate = (date) => {
+    const parts = date.split("-");
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  };
+
   const [errors, setErrors] = useState({
     firstName: {
       error: false,
@@ -115,8 +120,8 @@ function CreateEmployee() {
   const userInfos = {
     firstName,
     lastName,
-    birthDate,
-    startDate,
+    birthDate: formatDate(birthDate),
+    startDate: formatDate(startDate),
     selectState,
     street,
     city,
