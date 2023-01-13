@@ -4,10 +4,10 @@ import CreateEmployee from "./pages/CreateEmployee/CreateEmployee";
 import CurrentEmployees from "./pages/CurrentEmployees/CurrentEmployees";
 import GlobalStyle from "./utils/style/GlobalStyle";
 import EmployeeContext from "./utils/context/EmployeeContext";
-import useEmployeeState from "./hooks/useEmployeeState";
+import useEmployee from "./hooks/useEmployee";
 
 function App() {
-  const employeeState = useEmployeeState();
+  const employeeState = useEmployee();
 
   return (
     <React.StrictMode>

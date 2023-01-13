@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Content, Form, ColLeft, ColRight, FormWrapper, InputsWrapper, FormField, Label, Input, ButtonWrapper } from "./Style";
 import EmployeeContext from "../../utils/context/EmployeeContext";
+import useErrors from "../../hooks/useErrors";
 import PageTemplate from "../../components/PageTemplate";
 import Title from "../../components/Title";
 import { Dropdown } from "simple-react-select-dropdown";
@@ -12,6 +13,7 @@ import { departments } from "../../utils/data/departments";
 function CreateEmployee() {
   const navigate = useNavigate();
   const { addEmployee } = useContext(EmployeeContext);
+  const { errors, isFormValid } = useErrors();
   const [firstName, setUserFirstName] = useState("");
   const [lastName, setUserLastName] = useState("");
   const [birthDate, setUserBirthDate] = useState("");
@@ -21,100 +23,11 @@ function CreateEmployee() {
   const [city, setUserCity] = useState("");
   const [selectState, setSelectState] = useState("");
   const [zipcode, setUserZipcode] = useState("");
-  const [errors, setErrors] = useState({
-    firstName: {
-      error: false,
-      message: "First name is required",
-    },
-    lastName: {
-      error: false,
-      message: "Last name is required",
-    },
-    birthDate: {
-      error: false,
-      message: "Birth date is required",
-    },
-    startDate: {
-      error: false,
-      message: "Start date is required",
-    },
-    department: {
-      error: false,
-      message: "Department is required",
-    },
-    street: {
-      error: false,
-      message: "Street is required",
-    },
-    city: {
-      error: false,
-      message: "City is required",
-    },
-    selectState: {
-      error: false,
-      message: "State is required",
-    },
-    zipcode: {
-      error: false,
-      message: "Zipcode is required",
-    },
-  });
 
-  const validateForm = () => {
-    let newErrors = { ...errors };
-    let formIsValid = true;
-
-    if (!firstName) {
-      newErrors.firstName.error = true;
-      formIsValid = false;
-    }
-    if (!lastName) {
-      newErrors.lastName.error = true;
-      formIsValid = false;
-    }
-    if (!birthDate) {
-      newErrors.birthDate.error = true;
-      formIsValid = false;
-    }
-
-    if (!startDate) {
-      newErrors.startDate.error = true;
-      formIsValid = false;
-    }
-
-    if (!department) {
-      newErrors.department.error = true;
-      formIsValid = false;
-    }
-
-    if (!street) {
-      newErrors.street.error = true;
-      formIsValid = false;
-    }
-
-    if (!city) {
-      newErrors.city.error = true;
-      formIsValid = false;
-    }
-
-    if (!selectState) {
-      newErrors.selectState.error = true;
-      formIsValid = false;
-    }
-
-    if (!zipcode) {
-      newErrors.zipcode.error = true;
-      formIsValid = false;
-    }
-
-    setErrors(newErrors);
-    return formIsValid;
+  const formatDate = (date) => {
+    const parts = date.split("-");
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
   };
-
-    const formatDate = (date) => {
-      const parts = date.split("-");
-      return `${parts[2]}/${parts[1]}/${parts[0]}`;
-    };
 
   const userInfos = {
     firstName,
@@ -130,9 +43,8 @@ function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formIsValid = validateForm();
 
-    if (formIsValid) {
+    if (isFormValid(userInfos)) {
       addEmployee(userInfos);
       navigate("/current-employees", { replace: true });
     }

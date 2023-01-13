@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase-config";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 
-const useEmployeeState = () => {
+const useEmployee = () => {
   const [employees, setEmployees] = useState([]);
   const employeesCollectionRef = collection(db, "employees");
 
@@ -25,4 +25,4 @@ const useEmployeeState = () => {
   return { employees, addEmployee };
 };
 
-export default useEmployeeState;
+export default useEmployee;
