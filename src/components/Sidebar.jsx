@@ -11,6 +11,11 @@ const SidebarWrapper = styled.nav`
   flex-direction: column;
   width: 25%;
   border-right: 1px solid ${colors.grey};
+
+  @media (max-width: 920px) {
+    border-right: none;
+    width: 100%;
+  }
 `;
 
 const LogoLink = styled(NavLink)`
@@ -31,6 +36,10 @@ const MenuWrapper = styled.div`
   align-items: flex-start;
   border-top: 1px solid ${colors.grey};
   padding: 1rem 0.7rem;
+
+  @media (max-width: 920px) {
+    align-items: center;
+  }
 `;
 
 const ItemLink = styled(NavLink)`
@@ -41,8 +50,13 @@ const ItemLink = styled(NavLink)`
   width: 80%;
   border-radius: 7px;
 
-  &:hover, &.active {
+  &:hover,
+  &.active {
     background-color: ${colors.primary};
+  }
+
+  @media (max-width: 920px) {
+    width: 100%;
   }
 `;
 

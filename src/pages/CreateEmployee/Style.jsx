@@ -4,9 +4,12 @@ import colors from "../../utils/style/colors";
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${colors.grey};
   border-radius: 10px;
-  padding: 1.5rem;
+
+  @media (min-width: 920px) {
+    border: 1px solid ${colors.grey};
+    padding: 1.5rem;
+  }
 `;
 
 export const Form = styled.form`
@@ -16,9 +19,18 @@ export const Form = styled.form`
 
 export const ColLeft = styled.div`
   margin-right: 5rem;
+
+  @media (max-width: 920px) {
+    margin-right: 0;
+    width: 100%;
+  }
 `;
 
-export const ColRight = styled.div``;
+export const ColRight = styled.div`
+  @media (max-width: 920px) {
+    width: 100%;
+  }
+`;
 
 export const FormWrapper = styled.div`
   background-color: #f3f8f2;
@@ -29,8 +41,14 @@ export const FormWrapper = styled.div`
     display: flex;
     justify-content: space-between;
 
+    @media (max-width: 920px) {
+      flex-direction: column;
+    }
+
     > * {
-      width: 45%;
+      @media (min-width: 920px) {
+        width: 45%;
+      }
     }
   }
 `;
@@ -50,6 +68,12 @@ export const FormField = styled.div`
     button {
       border: 1px solid red;
     }
+  }
+
+  .error-message {
+    padding: 0.3rem 0 0;
+    font-size: 12px;
+    color: red;
   }
 `;
 

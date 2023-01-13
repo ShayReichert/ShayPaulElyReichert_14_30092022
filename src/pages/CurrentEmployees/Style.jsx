@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 import colors from "../../utils/style/colors";
-
+import { headersData } from "../../utils/data/headers";
+console.log(headersData[0].name);
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,12 +9,97 @@ export const Content = styled.div`
   border-radius: 7px;
   padding: 3rem 4rem;
   min-height: 50vh;
+
+  @media (max-width: 920px) {
+    border: none;
+    padding: 3rem 0;
+
+    /* Force table to not be like tables anymore */
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      border: 1px solid ${colors.grey};
+      border-radius: 7px;
+      margin-bottom: 3rem;
+    }
+
+    td {
+      /* Like a "row" */
+      border: none;
+      position: relative;
+      padding-left: 50%;
+
+      &:nth-child(odd) {
+        background-color: ${colors.lightgrey};
+      }
+    }
+
+    td:before {
+      /* Like a table header */
+      position: absolute;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    /*
+	Label the data
+	*/
+    td:nth-of-type(1):before {
+      content: "${headersData[0].name}";
+    }
+    td:nth-of-type(2):before {
+      content: "${headersData[1].name}";
+    }
+    td:nth-of-type(3):before {
+      content: "${headersData[2].name}";
+    }
+    td:nth-of-type(4):before {
+      content: "${headersData[3].name}";
+    }
+    td:nth-of-type(5):before {
+      content: "${headersData[4].name}";
+    }
+    td:nth-of-type(6):before {
+      content: "${headersData[5].name}";
+    }
+    td:nth-of-type(7):before {
+      content: "${headersData[6].name}";
+    }
+    td:nth-of-type(8):before {
+      content: "${headersData[7].name}";
+    }
+    td:nth-of-type(9):before {
+      content: "${headersData[8].name}";
+    }
+  }
 `;
 
 export const SearchWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 3rem;
+
+  @media (max-width: 920px) {
+    justify-content: flex-start;
+  }
 
   form {
     width: fit-content;
