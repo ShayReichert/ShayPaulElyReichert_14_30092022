@@ -10,9 +10,6 @@ function CurrentEmployees() {
   const [currentEmployees, setCurrentEmployees] = useState(employees);
   const { sortKey, headers, handleSort } = useSort();
   const [query, setQuery] = useState("");
-  const handleChange = (e) => {
-    setQuery(e.target.value);
-  };
 
   useEffect(() => {
     setCurrentEmployees(employees);
@@ -33,6 +30,21 @@ function CurrentEmployees() {
     });
   }
 
+  // Handle search from search input
+  const handleSearch = (e) => {
+    setQuery(e.target.value);
+  };
+
+  // Filter employees based on query value
+  useEffect(() => {
+    setCurrentEmployees(
+      employees.filter((employee) =>
+        // Object.values() : create an array containing all the values ​​of the "employee" object
+        Object.values(employee).some((val) => typeof val === "string" && val.toLowerCase().includes(query.toLowerCase()))
+      )
+    );
+  }, [employees, query]);
+
   return (
     <PageTemplate>
       <Title title="Current Employees" />
@@ -40,7 +52,7 @@ function CurrentEmployees() {
         <SearchWrapper>
           <form>
             <label htmlFor="search">Search : </label>
-            <input id="search" name="search" type="search" value={query} onChange={handleChange} />
+            <input id="search" name="search" type="search" value={query} onChange={handleSearch} />
           </form>
         </SearchWrapper>
         <div className="Table">
