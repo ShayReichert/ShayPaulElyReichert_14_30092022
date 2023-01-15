@@ -52,12 +52,12 @@ const useErrors = () => {
       newErrors.lastName.error = true;
       formIsValid = false;
     }
-    if (!userInfos.birthDate) {
+    if (!userInfos.birthDate || userInfos.birthDate === "undefined/undefined/") {
       newErrors.birthDate.error = true;
       formIsValid = false;
     }
 
-    if (!userInfos.startDate) {
+    if (!userInfos.startDate || userInfos.startDate === "undefined/undefined/") {
       newErrors.startDate.error = true;
       formIsValid = false;
     }

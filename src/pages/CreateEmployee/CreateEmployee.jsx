@@ -69,7 +69,11 @@ function CreateEmployee() {
                       onChange={(e) => setUserFirstName(e.target.value)}
                       className={errors.firstName.error ? "error" : ""}
                     />
-                    {errors.firstName.error && <span className="error-message">{errors.firstName.message}</span>}
+                    {errors.firstName.error && (
+                      <span className="error-message" data-testid="first-name-error">
+                        {errors.firstName.message}
+                      </span>
+                    )}
                   </FormField>
                   <FormField>
                     <Label htmlFor="lastName">Last Name</Label>
@@ -140,7 +144,7 @@ function CreateEmployee() {
                     {errors.street.error && <span className="error-message">{errors.street.message}</span>}
                   </FormField>
                   <FormField>
-                    <Label htmlFor="street">City</Label>
+                    <Label htmlFor="city">City</Label>
                     <Input
                       type="text"
                       id="city"
