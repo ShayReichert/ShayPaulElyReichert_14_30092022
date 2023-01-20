@@ -14,7 +14,7 @@ const useEmployee = () => {
       setEmployees(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     };
     getEmployees();
-  }, []);
+  }, [employeesCollectionRef]);
 
   // Add a new employee to the "employees" firebase collection and update state with this new data
   const addEmployee = async (employee) => {
