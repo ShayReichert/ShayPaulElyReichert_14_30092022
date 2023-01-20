@@ -1,27 +1,34 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase-config";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { employeeDataExamples } from "../utils/data/__mocks__";
 
 const useEmployee = () => {
   const [employees, setEmployees] = useState([]);
+  const [currentId, setCurrentId] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const employeesCollectionRef = collection(db, "employees");
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Retrieve all employees in the "employees" firebase collection and update state with this data
+  // Retrieve all employees from the local storage if exists
   useEffect(() => {
-    const getEmployees = async () => {
-      const data = await getDocs(employeesCollectionRef);
-      setEmployees(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-    };
-    getEmployees();
-  }, [employeesCollectionRef]);
+    if (localStorage.getItem("employees") === null) {
+      localStorage.setItem("employees", JSON.stringify(employeeDataExamples()));
+      setIsLoaded(true);
+    } else {
+      setEmployees(JSON.parse(localStorage.getItem("employees")));
+      setIsLoaded(true);
+    }
+  }, [isLoaded]);
 
-  // Add a new employee to the "employees" firebase collection and update state with this new data
-  const addEmployee = async (employee) => {
-    const docRef = await addDoc(employeesCollectionRef, employee);
-    const employeeWithId = { id: docRef.id, ...employee };
-    setEmployees([...employees, employeeWithId]);
-    setIsModalOpen(true);
+  useEffect(() => {
+    if (employees.length) setCurrentId(Math.max(...employees.map((e) => e.id)));
+  }, [employees]);
+
+  // Add a new employee to the "employees" with an new ID
+  const addEmployee = (employee) => {
+    const newEmployees = [...employees, { ...employee, id: currentId + 1 }];
+    setEmployees(newEmployees);
+    setCurrentId(currentId + 1);
+    localStorage.setItem("employees", JSON.stringify(newEmployees));
+     setIsModalOpen(true);
   };
 
   return { employees, addEmployee, isModalOpen, setIsModalOpen };
