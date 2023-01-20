@@ -3,7 +3,7 @@ export const mockEmployeeData = () => {
     {
       id: 1,
       firstName: "John",
-      lastname: "Doe",
+      lastName: "Doe",
       birthDate: "1989-10-23",
       startDate: "2022-08-18",
       department: "Marketing",
