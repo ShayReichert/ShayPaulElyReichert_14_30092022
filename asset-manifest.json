@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/ShayPaulElyReichert_14_30092022/static/css/main.bb319e69.css",
+    "main.js": "/ShayPaulElyReichert_14_30092022/static/js/main.29075c6c.js",
+    "static/media/logo.jpg": "/ShayPaulElyReichert_14_30092022/static/media/logo.86bb83089e37028716e2.jpg",
+    "index.html": "/ShayPaulElyReichert_14_30092022/index.html",
+    "main.bb319e69.css.map": "/ShayPaulElyReichert_14_30092022/static/css/main.bb319e69.css.map",
+    "main.29075c6c.js.map": "/ShayPaulElyReichert_14_30092022/static/js/main.29075c6c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bb319e69.css",
+    "static/js/main.29075c6c.js"
+  ]
+}
