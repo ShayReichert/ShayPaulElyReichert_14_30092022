@@ -103,7 +103,7 @@ export const SearchWrapper = styled.div`
 
   form {
     width: fit-content;
-    color: ${colors.grey};
+    color: ${colors.dark};
   }
 `;
 
