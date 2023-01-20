@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import colors from "../../utils/style/colors";
 import { headersData } from "../../utils/data/headers";
-console.log(headersData[0].name);
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;

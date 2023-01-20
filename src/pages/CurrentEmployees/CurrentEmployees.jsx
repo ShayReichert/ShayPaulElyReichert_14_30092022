@@ -4,14 +4,16 @@ import EmployeeContext from "../../utils/context/EmployeeContext";
 import useSort from "../../hooks/useSort";
 import PageTemplate from "../../components/PageTemplate";
 import Title from "../../components/Title";
+import Modal from "../../components/Modal";
 
 function CurrentEmployees() {
-  const { employees } = useContext(EmployeeContext);
+  const { employees, isModalOpen, setIsModalOpen } = useContext(EmployeeContext);
   const [currentEmployees, setCurrentEmployees] = useState(employees);
   const { sortKey, headers, handleSort } = useSort();
   const [query, setQuery] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setCurrentEmployees(employees);
   }, [employees]);
 
@@ -86,6 +88,7 @@ function CurrentEmployees() {
           </Table>
         </div>
       </Content>
+      <Modal message="Employee created !" isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
     </PageTemplate>
   );
 }
