@@ -44,7 +44,7 @@ export const Content = styled.div`
       padding-left: 50%;
 
       &:nth-child(odd) {
-        background-color: ${colors.lightgrey};
+        background-color: ${colors.primary};
       }
     }
 
@@ -119,7 +119,7 @@ export const TheadButton = styled.button`
   font-weight: 700;
   font-size: 16px;
   padding: 2rem 1rem;
-  background-color: ${colors.lightgrey};
+  background-color: ${colors.primary};
   cursor: pointer;
 
   &.ascending::after {
@@ -134,11 +134,11 @@ export const TheadButton = styled.button`
 `;
 
 export const TheadTr = styled.tr`
-  background-color: ${colors.lightgrey};
+  background-color: ${colors.primary};
 `;
 
 export const TheadTh = styled.th`
-  background-color: ${colors.lightgrey};
+  background-color: ${colors.primary};
 `;
 
 export const TbodyTr = styled.tr`
