@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
-import Logo from "../assets/logo.jpg";
+import Logo from "../assets/logo.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faPlus } from "@fortawesome/free-solid-svg-icons";
 import colors from "../utils/style/colors";
@@ -28,6 +28,7 @@ const LogoLink = styled(NavLink)`
 const HomeLogo = styled.img`
   max-width: 100%;
   width: 138px;
+  height: auto;
 `;
 
 const MenuWrapper = styled.div`
@@ -70,7 +71,7 @@ function Sidebar() {
   return (
     <SidebarWrapper>
       <LogoLink to="/">
-        <HomeLogo src={Logo} alt="HRNET logo" />
+        <HomeLogo src={Logo} width="276" height="294" alt="HRNET logo" />
       </LogoLink>
 
       <MenuWrapper>
