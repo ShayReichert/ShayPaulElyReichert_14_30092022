@@ -13,7 +13,6 @@ function CurrentEmployees() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     setCurrentEmployees(employees);
   }, [employees]);
 
