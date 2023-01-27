@@ -19,12 +19,25 @@ function CurrentEmployees() {
   // Sort the employees array based on the sort class and the sort key
   let sortedEmployees = [...currentEmployees];
   const sortHeader = headers.find((header) => header.value === sortKey);
+
   if (sortHeader && sortHeader.sortClass !== "none") {
     sortedEmployees.sort((a, b) => {
-      if (a[sortKey] < b[sortKey]) {
+      let valueA = "";
+      let valueB = "";
+
+      if (sortHeader.value === "birthDate" || sortHeader.value === "startDate") {
+        // Format date value in a sortable format
+        valueA = Date.parse(a[sortKey].split("/").reverse().join("/"));
+        valueB = Date.parse(b[sortKey].split("/").reverse().join("/"));
+      } else {
+        valueA = a[sortKey];
+        valueB = b[sortKey];
+      }
+
+      if (valueA < valueB) {
         return sortHeader.sortClass === "ascending" ? -1 : 1;
       }
-      if (a[sortKey] > b[sortKey]) {
+      if (valueA > valueB) {
         return sortHeader.sortClass === "ascending" ? 1 : -1;
       }
       return 0;
@@ -36,7 +49,7 @@ function CurrentEmployees() {
     setQuery(e.target.value);
   };
 
-  // Filter employees based on query value
+  // Filter employees based on query value from search input
   useEffect(() => {
     setCurrentEmployees(
       employees.filter((employee) =>
