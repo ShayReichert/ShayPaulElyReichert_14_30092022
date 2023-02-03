@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/ShayPaulElyReichert_14_30092022/static/css/main.bb319e69.css",
-    "main.js": "/ShayPaulElyReichert_14_30092022/static/js/main.6f9e1abd.js",
+    "main.css": "/ShayPaulElyReichert_14_30092022/static/css/main.e3e37aba.css",
+    "main.js": "/ShayPaulElyReichert_14_30092022/static/js/main.87b89421.js",
     "static/media/logo.webp": "/ShayPaulElyReichert_14_30092022/static/media/logo.5dbd4522e443f17ca737.webp",
     "index.html": "/ShayPaulElyReichert_14_30092022/index.html",
-    "main.bb319e69.css.map": "/ShayPaulElyReichert_14_30092022/static/css/main.bb319e69.css.map",
-    "main.6f9e1abd.js.map": "/ShayPaulElyReichert_14_30092022/static/js/main.6f9e1abd.js.map"
+    "main.e3e37aba.css.map": "/ShayPaulElyReichert_14_30092022/static/css/main.e3e37aba.css.map",
+    "main.87b89421.js.map": "/ShayPaulElyReichert_14_30092022/static/js/main.87b89421.js.map"
   },
   "entrypoints": [
-    "static/css/main.bb319e69.css",
-    "static/js/main.6f9e1abd.js"
+    "static/css/main.e3e37aba.css",
+    "static/js/main.87b89421.js"
   ]
 }
