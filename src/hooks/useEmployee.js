@@ -18,6 +18,7 @@ const useEmployee = () => {
     }
   }, [isLoaded]);
 
+  // Set the largest ID (the last one added)
   useEffect(() => {
     if (employees.length) setCurrentId(Math.max(...employees.map((e) => e.id)));
   }, [employees]);
@@ -28,7 +29,7 @@ const useEmployee = () => {
     setEmployees(newEmployees);
     setCurrentId(currentId + 1);
     localStorage.setItem("employees", JSON.stringify(newEmployees));
-     setIsModalOpen(true);
+    setIsModalOpen(true);
   };
 
   return { employees, addEmployee, isModalOpen, setIsModalOpen };

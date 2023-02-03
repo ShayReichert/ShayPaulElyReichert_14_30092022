@@ -1,5 +1,5 @@
 import { MemoryRouter } from "react-router-dom";
-import { render, fireEvent, getByTestId } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import EmployeeContext from "../../utils/context/EmployeeContext";
 import CreateEmployee from "./CreateEmployee";
 import { mockEmployeeData } from "../../utils/data/__mocks__";
