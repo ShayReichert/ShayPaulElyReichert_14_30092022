@@ -1,6 +1,22 @@
 import styled from "styled-components/macro";
 import colors from "../../utils/style/colors";
 
+const inputStyle = `
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    border-radius: 7px;
+    border: none;
+    padding: 12px 11px;
+
+    &:focus-visible {
+      outline: 1px solid ${colors.secondary};
+    }
+
+    &.error {
+      border: 1px solid red;
+    }
+`;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,6 +91,10 @@ export const FormField = styled.div`
     font-size: 12px;
     color: red;
   }
+
+  .react-datepicker-wrapper input {
+    ${inputStyle}
+  }
 `;
 
 export const Label = styled.label`
@@ -84,19 +104,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  font-family: Inter, Helvetica, Arial, sans-serif;
-  font-size: 17px;
-  border-radius: 7px;
-  border: none;
-  padding: 12px 11px;
-
-  &:focus-visible {
-    outline: 1px solid ${colors.secondary};
-  }
-
-  &.error {
-    border: 1px solid red;
-  }
+  ${inputStyle}
 `;
 
 export const ButtonWrapper = styled.div`

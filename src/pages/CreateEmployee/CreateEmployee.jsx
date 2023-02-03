@@ -5,6 +5,8 @@ import EmployeeContext from "../../utils/context/EmployeeContext";
 import useErrors from "../../hooks/useErrors";
 import PageTemplate from "../../components/PageTemplate";
 import Title from "../../components/Title";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { Dropdown } from "simple-react-select-dropdown";
 import "simple-react-select-dropdown/dist/index.css";
 import { countries } from "../../utils/data/countries";
@@ -24,10 +26,13 @@ function CreateEmployee() {
   const [selectState, setSelectState] = useState("");
   const [zipcode, setUserZipcode] = useState("");
 
-  const formatDate = (date) => {
-    const parts = date.split("-");
-    return `${parts[2]}/${parts[1]}/${parts[0]}`;
-  };
+  function formatDate(date) {
+    return new Date(date).toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  }
 
   const userInfos = {
     firstName,
@@ -91,15 +96,12 @@ function CreateEmployee() {
                 <div className="line">
                   <FormField>
                     <Label htmlFor="birthdate">Date of Birth</Label>
-                    <Input
-                      type="date"
-                      id="birthdate"
-                      value={birthDate}
-                      min="1900-01-01"
-                      max=""
-                      onChange={(e) => setUserBirthDate(e.target.value)}
+                    <DatePicker
+                      wrapperClassName="birth-date-input"
+                      selected={birthDate}
+                      onChange={(date) => setUserBirthDate(date)}
                       className={errors.birthDate.error ? "error" : ""}
-                    ></Input>
+                    />
                     {errors.birthDate.error && <span className="error-message">{errors.birthDate.message}</span>}
                   </FormField>
                 </div>
@@ -109,13 +111,10 @@ function CreateEmployee() {
                 <div className="line">
                   <FormField>
                     <Label htmlFor="startDate">Start Date</Label>
-                    <Input
-                      type="date"
-                      id="startDate"
-                      value={startDate}
-                      min="1900-01-01"
-                      max=""
-                      onChange={(e) => setUserStartDate(e.target.value)}
+                    <DatePicker
+                      wrapperClassName="start-date-input"
+                      selected={startDate}
+                      onChange={(date) => setUserStartDate(date)}
                       className={errors.startDate.error ? "error" : ""}
                     />
                     {errors.startDate.error && <span className="error-message">{errors.startDate.message}</span>}

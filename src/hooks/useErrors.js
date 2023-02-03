@@ -58,14 +58,14 @@ const useErrors = () => {
       newErrors.lastName.error = false;
     }
 
-    if (!userInfos.birthDate || userInfos.birthDate === "undefined/undefined/") {
+    if (!userInfos.birthDate || userInfos.birthDate === "Invalid Date") {
       newErrors.birthDate.error = true;
       formIsValid = false;
     } else {
       newErrors.birthDate.error = false;
     }
 
-    if (!userInfos.startDate || userInfos.startDate === "undefined/undefined/") {
+    if (!userInfos.startDate || userInfos.startDate === "Invalid Date") {
       newErrors.startDate.error = true;
       formIsValid = false;
     } else {
