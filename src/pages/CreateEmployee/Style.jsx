@@ -84,6 +84,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  font-family: Inter, Helvetica, Arial, sans-serif;
   font-size: 17px;
   border-radius: 7px;
   border: none;
