@@ -148,6 +148,39 @@ export const TbodyTr = styled.tr`
 `;
 
 export const TbodyTd = styled.td`
-  padding: 2rem 1rem;
+  padding: 1rem;
   border-bottom: 1px solid ${colors.grey};
+`;
+
+export const SelectEntries = styled.div`
+  display: flex;
+  padding: 1rem 0;
+
+  select {
+    margin: 0 0.5rem;
+  }
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 4rem 0 0;
+`;
+
+export const Navigation = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    background-color: ${colors.lightgrey};
+    border-style: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    font-size: 17px;
+    cursor: pointer;
+  }
+
+  .current-page {
+    padding: 0 0.5rem;
+  }
 `;
